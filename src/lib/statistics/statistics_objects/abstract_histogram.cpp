@@ -860,6 +860,7 @@ std::vector<std::pair<T, T>> AbstractHistogram<T>::bin_bounds() const {
 template <typename T>
 void AbstractHistogram<T>::_assert_bin_validity() {
   for (BinID bin_id{0}; bin_id < bin_count(); ++bin_id) {
+    if (bin_minimum(bin_id) > bin_maximum(bin_id)) std::cout << "[" << bin_minimum(bin_id) << ", " << bin_maximum(bin_id) << "]" << std::endl;
     Assert(bin_minimum(bin_id) <= bin_maximum(bin_id), "Bin minimum must be <= bin maximum.");
 
     if (bin_id < bin_count() - 1) {
